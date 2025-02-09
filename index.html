@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Character Counter</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: bisque;
+            margin-top: 200px;
+        }
+        textarea{
+            border: 3px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Message(200 characters only)</h1>
+    <textarea id="message" rows="6" cols="50" maxlength="200" placeholder="Type your message..."></textarea>
+    <div id="counter">
+        <span id="typedCount">0</span>/<span id="maxCount">200</span> characters
+    </div>
+    <p id="warning" style="display:none; color: red; font-size: 20px;">You have reached the character limit!</p>
+
+    <script>
+        var textArea = document.getElementById("message");
+        var typedCount = document.getElementById("typedCount");
+        var maxCount = document.getElementById("maxCount");
+        var warningMessage = document.getElementById("warning");
+
+        var maxChars = 200;
+
+        // Update character counter in real-time
+        textArea.addEventListener("input", function () {
+            var currentLength = textArea.value.length;
+
+            // Update the typed character count
+            typedCount.textContent = currentLength;
+
+            // Display how many characters are remaining
+            var remainingChars = maxChars - currentLength;
+
+            // Prevent further typing if the character limit is exceeded
+            if (remainingChars <= 0) {
+                warning.style.display = "block";
+            } else {
+                warning.style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
